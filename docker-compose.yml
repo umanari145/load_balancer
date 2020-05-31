@@ -12,20 +12,24 @@ services:
       - balancer
 
   web1:
-    image: nginx
     container_name: 'web1'
+    build:
+        context: "./docker/web1"
+        dockerfile: "Dockerfile"
     volumes:
-      - ./web1:/usr/share/nginx/html
+      - ./web1:/var/www/html
     ports:
       - 7000:80
     networks:
       - balancer
 
   web2:
-    image: nginx
     container_name: 'web2'
+    build:
+        context: "./docker/web2"
+        dockerfile: "Dockerfile"
     volumes:
-      - ./web2:/usr/share/nginx/html
+      - ./web2:/var/www/html
     ports:
       - 7001:80
     networks:
